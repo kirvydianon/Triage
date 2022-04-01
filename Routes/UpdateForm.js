@@ -61,7 +61,11 @@ router.get("/updateId/:id", async (req, res) => {
   const user = await UpdateForm.findOne({
     where: { RegisterFormId: userId, date: date },
   });
-  res.json(user);
+  if (user == null) {
+    return res.json("Please Update your form");
+  } else {
+    res.json(user);
+  }
 });
 
 router.put("/temperature", async (req, res) => {
@@ -70,11 +74,11 @@ router.put("/temperature", async (req, res) => {
 
   await UpdateForm.update(
     { temperature: temperature },
-    { where: { UserId: id, date: date } }
+    { where: { RegisterFormId: id, date: date } }
   );
 
   const user = await UpdateForm.findOne({
-    where: { UserId: id, date: date },
+    where: { RegisterFormId: id, date: date },
   });
   if (user) {
     res.json(user);
