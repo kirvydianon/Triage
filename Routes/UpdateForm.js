@@ -62,7 +62,7 @@ router.get("/updateId/:id", async (req, res) => {
     where: { RegisterFormId: userId, date: date },
   });
   if (user == null) {
-    return res.json("Please Update your form");
+    return res.json({ error: "Please Update your form" });
   } else {
     res.json(user);
   }
