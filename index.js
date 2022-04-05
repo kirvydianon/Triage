@@ -3,7 +3,7 @@ const app = express();
 const db = require("./models");
 const registerRouter = require("./Routes/RegisterForm");
 const updateformRouter = require("./Routes/UpdateForm");
-
+require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 
 const cors = require("cors");
