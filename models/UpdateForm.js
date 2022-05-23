@@ -1,5 +1,21 @@
 module.exports = (sequelize, Datatypes) => {
   const UpdateForm = sequelize.define("UpdateForm", {
+    username: {
+      type: Datatypes.STRING,
+      allowNull: false,
+    },
+    firstname: {
+      type: Datatypes.STRING,
+      allowNull: false,
+    },
+    lastname: {
+      type: Datatypes.STRING,
+      allowNull: false,
+    },
+    middlename: {
+      type: Datatypes.STRING,
+      allowNull: false,
+    },
     purpose: {
       type: Datatypes.STRING,
       allowNull: false,
@@ -68,13 +84,14 @@ module.exports = (sequelize, Datatypes) => {
       type: Datatypes.STRING,
       allowNull: false,
     },
-    updateActive: {
-      type: Datatypes.BOOLEAN,
-      defaultValue: false,
-    },
+
     date: { type: Datatypes.DATEONLY },
     temperature: {
       type: Datatypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
+    timesIn: {
+      type: Datatypes.INTEGER,
       allowNull: false,
     },
   });

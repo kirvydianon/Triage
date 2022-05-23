@@ -38,7 +38,7 @@ module.exports = (sequelize, Datatypes) => {
       allowNull: false,
     },
     contact: {
-      type: Datatypes.INTEGER,
+      type: Datatypes.STRING,
       allowNull: false,
     },
     gender: {
@@ -80,10 +80,6 @@ module.exports = (sequelize, Datatypes) => {
     designation: {
       type: Datatypes.STRING,
       allowNull: false,
-    },
-    inviActive: {
-      type: Datatypes.BOOLEAN,
-      defaultValue: false,
     },
   });
 

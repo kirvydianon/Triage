@@ -27,7 +27,6 @@ router.post("/", async (req, res) => {
     year,
     grade,
     designation,
-    inviActive,
   } = req.body;
   const salt = await bcrypt.genSalt();
   const hashPassword = await bcrypt.hash(password, salt);
@@ -52,7 +51,6 @@ router.post("/", async (req, res) => {
       year: year,
       grade: grade,
       designation: designation,
-      inviActive: inviActive,
     });
     res.json({ msg: "Registration Successful" });
   } catch (error) {
@@ -73,6 +71,7 @@ router.post("/login", async (req, res) => {
         {
           username: user.username,
           id: user.id,
+          status: true,
         },
         "importantword"
       );
@@ -82,7 +81,7 @@ router.post("/login", async (req, res) => {
         id: user.id,
       });
     } else {
-      res.json({ error: "Wrong Password" });
+      res.json({ error: "Wrong Username or Password" });
     }
   });
 });
@@ -96,6 +95,27 @@ router.get("/byId/:id", async (req, res) => {
 
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
+});
+
+router.put("/account", async (req, res) => {
+  const { id, firstname, lastname, middlename, age, contact, email } = req.body;
+
+  try {
+    await RegisterForm.update(
+      {
+        firstname: firstname,
+        lastname: lastname,
+        middlename: middlename,
+        age: age,
+        contact: contact,
+        email: email,
+      },
+      { where: { id: id } }
+    );
+    res.json({ msg: "Update Successful" });
+  } catch (error) {
+    res.json({ msg: "Update Failed" });
+  }
 });
 
 module.exports = router;
